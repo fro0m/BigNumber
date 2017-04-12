@@ -37,7 +37,7 @@ BigNumber::BigNumber(const QString &t_literal)
     auto processInputF = [&](size_t firstIndex = 0) {
         bool remainderOfDivision = static_cast<bool>(0);
         QString t_literalNumber = t_literal.mid(firstIndex);
-        while(t_literal.length() != 0) {
+        while(t_literalNumber.length() != 0) {
             t_literalNumber = divideByTwo(t_literalNumber, &remainderOfDivision);
             m_data.resize(m_data.size() + 1);
             m_data[m_data.size() - 1] = remainderOfDivision;
@@ -166,7 +166,7 @@ QString BigNumber::addBigNumberString(const QString &t_string1, const QString &t
             resultNumber -= 10;
             remainder = true;
         }
-        resultString[i + lengthDiff] = QChar::fromLatin1(static_cast<char>(resultNumber) + '0');
+        resultString[static_cast<int>(i + lengthDiff)] = QChar::fromLatin1(static_cast<char>(resultNumber) + '0');
     }
 
     //filling up resultString with rest of longer

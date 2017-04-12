@@ -28,8 +28,8 @@ class BigNumber
 
 public:    
     BigNumber(ConstexprString t_literal);
-    BigNumber(const std::string & t_literal);
-    BigNumber(const QString & t_literal);
+    explicit BigNumber(const std::string & t_literal);
+    explicit BigNumber(const QString & t_literal);
 
     QString toString() const;
 
