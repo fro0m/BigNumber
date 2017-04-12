@@ -22,20 +22,30 @@ bool operator<(const QBitArray &lhs, const QBitArray &rhs)
 }
 }
 
-BigNumber::BigNumber(ConstexprString t_literal) {
-    QString decimalString = QString::fromLatin1(t_literal.rawData(), t_literal.size());
+BigNumber::BigNumber(ConstexprString t_literal) : BigNumber(QString::fromLatin1(t_literal.rawData(), t_literal.size()))
+{
+
+}
+
+BigNumber::BigNumber(const std::string &t_literal) : BigNumber(QString::fromStdString(t_literal))
+{
+
+}
+
+BigNumber::BigNumber(const QString &t_literal)
+{
     auto processInputF = [&](size_t firstIndex = 0) {
         bool remainderOfDivision = static_cast<bool>(0);
-        decimalString = decimalString.mid(firstIndex);
-        while(decimalString.length() != 0) {
-            decimalString = divideByTwo(decimalString, &remainderOfDivision);
+        QString t_literalNumber = t_literal.mid(firstIndex);
+        while(t_literal.length() != 0) {
+            t_literalNumber = divideByTwo(t_literalNumber, &remainderOfDivision);
             m_data.resize(m_data.size() + 1);
             m_data[m_data.size() - 1] = remainderOfDivision;
         }
         //qDebug() << m_data;
     };
 
-    switch (t_literal[0]) {
+    switch (t_literal[0].toLatin1()) {
     case '-':
         Q_ASSERT(!(t_literal[1] == '0' && t_literal.size() > 1));
         m_sign = Negative;

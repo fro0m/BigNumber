@@ -4,6 +4,7 @@
 #include <QBitArray>
 #include <QString>
 #include <QtGlobal>
+#include <string>
 #include <QDebug>
 
 class BigNumber
@@ -27,6 +28,8 @@ class BigNumber
 
 public:    
     BigNumber(ConstexprString t_literal);
+    BigNumber(const std::string & t_literal);
+    BigNumber(const QString & t_literal);
 
     QString toString() const;
 
