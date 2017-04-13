@@ -281,7 +281,7 @@ QBitArray BigNumber::subBits(const QBitArray &lhs, const QBitArray &rhs) const {
             break;
         case 1:
             ba[i] = true;
-            shift++;
+            shift = 0;
         }
     }
     if (remainder) {

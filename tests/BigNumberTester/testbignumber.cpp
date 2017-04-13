@@ -72,6 +72,9 @@ void TestBigNumber::testAddition()
 
     BigNumber bnrty1(QString("-111111111111111111111111111111111111"));
     BigNumber bnrty2(QString("11111111111111111"));
+    qDebug() << bnrty1.toString();
+    qDebug() << bnrty2.toString();
+    auto res = bnrty1 + bnrty2;
     QCOMPARE((bnrty1 + bnrty2).toString(), QString("-111111111111111111100000000000000000"));
 
 
